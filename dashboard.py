@@ -1,54 +1,45 @@
 import streamlit as st
-import time
 import random
+import time
 
-# Define a function to update the requests count
+# Define a list of services and initial counts
+services = {
+    "Food": 100,
+    "Shelter": 90,
+    "Health": 80,
+    "Education": 70,
+    "Entertainment": 60
+}
+
+# Function to simulate receiving new requests
 def update_requests(services):
-    """Simulate data updates by randomly increasing service requests."""
-    for service in services:
-        services[service] += random.randint(1, 10)  # Random increment to simulate new requests
-    return services
+    """Randomly increase service requests to simulate new data."""
+    return {service: count + random.randint(1, 10) for service, count in services.items()}
 
-# Initialize or update the session state for services if not already set
-if 'services' not in st.session_state:
-    st.session_state.services = {
-        "Food": 100,
-        "Shelter": 90,
-        "Health": 80,
-        "Education": 70,
-        "Entertainment": 60
-    }
+# Function to generate sorted services by request count
+def generate_sorted_services(services):
+    return sorted(services.items(), key=lambda item: item[1], reverse=True)
 
-# Title and header of the dashboard
-st.title("Service Request Dashboard")
-st.header("Analytics: Top 5 requested services")
+# Create a placeholder for displaying the service ranking
+ranking_container = st.empty()
 
-# Button to manually trigger updates
-if st.button('Update Now'):
-    st.session_state.services = update_requests(st.session_state.services)
+# Main loop for the dynamic dashboard
+if st.button('Start Service Updates'):
+    run_updates = True
+    while run_updates:
+        # Update service counts
+        services = update_requests(services)
 
-# Display the services sorted by the number of requests (most requests on top)
-sorted_services = sorted(st.session_state.services.items(), key=lambda x: x[1], reverse=True)
-for service, count in sorted_services:
-    st.write(f"{service}: {count}")
+        # Clear the previous content
+        ranking_container.empty()
 
-# Add a placeholder for future updates
-placeholder = st.empty()
+        # Generate sorted services and update the display
+        sorted_services = generate_sorted_services(services)
+        with ranking_container.container():
+            for service, count in sorted_services:
+                st.write(f"{service}: {count}")
+        
+        # Simulate a variable delay to mimic live updates
+        sleep_duration = random.uniform(0.5, 1.5)
+        time.sleep(sleep_duration)
 
-# Update the data every few seconds
-while True:
-    # Check if the loop should continue
-    if 'keep_updating' in st.session_state and not st.session_state.keep_updating:
-        break
-    
-    # Update the service data
-    st.session_state.services = update_requests(st.session_state.services)
-    sorted_services = sorted(st.session_state.services.items(), key=lambda x: x[1], reverse=True)
-
-    # Update the display in the placeholder
-    with placeholder.container():
-        for service, count in sorted_services:
-            st.write(f"{service}: {count}")
-
-    # Sleep to slow down the updates for readability
-    time.sleep(2)
