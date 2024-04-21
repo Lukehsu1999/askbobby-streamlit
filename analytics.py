@@ -72,10 +72,9 @@ with col2:
         # Define a list of services and initial counts
         services = {
             "Food": 100,
-            "Shelter": 90,
-            "Health": 80,
-            "Education": 70,
-            "Entertainment": 60
+            "Shelter": 95,
+            "Health": 90,
+            "Clothing": 70
         }
 
         # Function to simulate receiving new requests
