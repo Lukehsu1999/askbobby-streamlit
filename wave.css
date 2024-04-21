@@ -1,0 +1,22 @@
+.stApp > header {
+    background-color: transparent;
+}
+
+.stApp {
+    margin: auto;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow: auto;
+    background: linear-gradient(315deg, #4f2991 3%, #7dc4ff 38%, #36cfcc 68%, #a92ed3 98%);
+    animation: gradient 15s ease infinite;
+    background-size: 400% 400%;
+    background-attachment: fixed;
+}
+.card {
+    background-color: #ffffff; /* White background */
+    border: 2px solid #e1e4e8; /* Solid border with light gray color */
+    border-radius: 10px; /* Rounded corners */
+    padding: 10px; /* Padding inside the card */
+    margin: 10px 0px; /* Margin outside the card */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow around the card */
+}
+
