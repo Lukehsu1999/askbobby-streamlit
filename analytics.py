@@ -3,6 +3,8 @@ import streamlit as st
 import json
 from streamlit_folium import st_folium
 from folium.plugins import TimestampedGeoJson 
+import random
+import time
 # checkout reference here: https://python-visualization.github.io/folium/latest/user_guide/plugins/message_timetamped_geojson.html
 
 col1, col2 = st.columns([7,3])
@@ -64,4 +66,37 @@ with col1:
     st_data = st_folium(containers_map)
 
 with col2:
-    st.header("Analytics:")
+    with st.container():
+        st.header("Top Requested Services:")
+    
+    with st.container():
+        st.header("Feedback livestream:")
+        sample_comments = [
+            "This is awesome!",
+            "Really enjoying the presentation so far.",
+            "What software are you using for this?",
+            "Can you explain that last part again?",
+            "Great session, very informative!",
+            "I love the visuals!",
+            "The audio is a bit unclear.",
+            "Thanks for this livestream!"
+        ]
+
+        def generate_feedback():
+            return random.choice(sample_comments)
+
+        # Create a placeholder for live comments
+        feedback_container = st.empty()
+
+        # Introduce a variable to control the loop
+        run_feedback = True
+
+        # Use a button to start the feedback loop
+        while run_feedback:
+            new_feedback = generate_feedback()
+            feedback_container.empty()  # Clear previous comments
+            feedback_container.write(new_feedback)  # Display new feedback
+                
+            sleep_duration = random.uniform(0.5, 1.5)
+            time.sleep(sleep_duration)
+            
