@@ -66,8 +66,8 @@ with col1:
     st_data = st_folium(containers_map)
 
 with col2:
-    with st.container():
-        st.header("Top Requested Services:")
+    with st.container(border=True):
+        st.subheader("Top Requested Services:")
 
         # Define a list of services and initial counts
         services = {
@@ -80,7 +80,7 @@ with col2:
         # Function to simulate receiving new requests
         def update_requests(services):
             """Randomly increase service requests to simulate new data."""
-            return {service: count + random.randint(1, 10) for service, count in services.items()}
+            return {service: count + random.randint(0, 3) for service, count in services.items()}
 
         # Function to generate sorted services by request count
         def generate_sorted_services(services):
@@ -109,8 +109,8 @@ with col2:
         #     time.sleep(sleep_duration)
 
     
-    with st.container():
-        st.header("Feedback livestream:")
+    with st.container(border=True):
+        st.subheader("Feedback livestream:")
         sample_comments = [
             "This is awesome!",
             "Really enjoying the presentation so far.",
