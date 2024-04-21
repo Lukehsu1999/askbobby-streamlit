@@ -7,10 +7,11 @@ with col1:
     st.header("Funding Programs based on Bobby's suggestions")
     # Define data for multiple rows of cards
     data = [
-        {"title": "Card 1", "description": "This is card 1 in row 1"}, 
-        {"title": "Card 2", "description": "This is card 2 in row 1"},
-        {"title": "Card 3", "description": "This is card 1 in row 2"}, 
-        {"title": "Card 4", "description": "This is card 2 in row 2"}
+        {"title": "Food for East Harlem", "description": "Bobby received an increasing food requests in East Harlem area.", "icon_url":"https://cdn-icons-png.flaticon.com/512/1046/1046784.png"}, 
+        {"title": "Refugees Health Fund", "description": "Bobby spotted a 120% increase in health requests from refugees in NYC.", "icon_url":"https://cdn-icons-png.flaticon.com/512/2875/2875419.png"},
+        {"title": "Fresh food Program NYC", "description": "Based on 120+ user feedback, people are looking for fresh vegetables and fruits replacing canned foods"}, 
+        {"title": "Building a new shelter @Greater South Bronx", "description": "Over the last 2 weeks, Bobby received 100+ requests for shelter in Greater South Bronx.", "icon_url":"https://cdn-icons-png.flaticon.com/512/854/854878.png"},
+        {"title": "Spanish-speaking Volunteers needed @Queens", "description": "Food Pantries in Queens area reported a 30% increase in Spanish-speaking clients. Volunteers familiar with Spanish are needed."}
     ]
     st.markdown("""
         <style>
@@ -41,10 +42,12 @@ with col1:
         # Create a full card's HTML content
         card_html = f"""
         <div class='card'>
+            <img src="{card.get('icon_url', 'https://cdn-icons-png.flaticon.com/512/1046/1046784.png')}" style="width: 50px; height: 50px; float: left; margin-right: 10px;">
             <h2>{card['title']}</h2>
             <p>{card['description']}</p>
-            <button class='button' onclick="alert('Clicked {card['title']}!');">Click Me</button>
+            <button class='button' onclick="alert('Clicked {card['title']}!');">Donate</button>
         </div>
+
         """
         st.markdown(card_html, unsafe_allow_html=True)
 
