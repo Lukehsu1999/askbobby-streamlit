@@ -3,21 +3,19 @@ import streamlit as st
 import json
 from streamlit_folium import st_folium
 from folium.plugins import TimestampedGeoJson 
+# checkout reference here: https://python-visualization.github.io/folium/latest/user_guide/plugins/timestamped_geojson.html
 
-with open('smart_trash_containers.geojson') as j:
+
+with open('timestamped_bobby_requests.geojson') as j:
     data = json.load(j)
 
-for i in range(len(data['features'])):
-     data['features'][i]['properties']['times'] = [data['features'][i]['properties']['assignment_date'][:19]]
-
-# center on Liberty Bell, add marker
-# m = folium.Map(location=[39.949610, -75.150282], zoom_start=10)
+containers_map = folium.Map(location=[40.7128, -74.0060], zoom_start=10)
+TimestampedGeoJson(data, period="PT30S",
+    add_last_point=True,duration="PT1M",).add_to(containers_map)
 # folium.Marker(
-#     [39.949610, -75.150282], popup="Liberty Bell", tooltip="Liberty Bell"
-# ).add_to(m)
-
-containers_map = folium.Map(location=[40.4406, -79.9959], zoom_start=12)
-TimestampedGeoJson(data, transition_time=300).add_to(containers_map)
-
+#     [40.7580, -73.9855],  # Latitude and Longitude of Times Square
+#     popup="Times Square",  # Popup label that appears when you click on the marker
+#     tooltip="Click for more info"  # Tooltip text that appears when you hover over the marker
+# ).add_to(containers_map)
 # call to render Folium map in Streamlit
-st_data = st_folium(containers_map, width=725)
+st_data = st_folium(containers_map)
