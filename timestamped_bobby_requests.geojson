@@ -1,0 +1,10 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {"type": "Feature", "properties": {"times": ["2024-04-20T08:00:00", "2024-04-20T08:01:00"], "type": "Food", "color": "#FF0000"}, "geometry": {"type": "Point", "coordinates": [-73.935242, 40.730610]}},
+    {"type": "Feature", "properties": {"times": ["2024-04-20T08:01:00", "2024-04-20T08:02:00"], "type": "Shelter"}, "geometry": {"type": "Point", "coordinates": [-74.0060, 40.7128]}},
+    {"type": "Feature", "properties": {"times": ["2024-04-20T08:03:00", "2024-04-20T08:10:00"], "type": "Health"}, "geometry": {"type": "Point", "coordinates": [-73.935242, 40.8491]}},
+    {"type": "Feature", "properties": {"times": ["2024-04-20T08:05:00", "2024-04-20T08:20:00"], "type": "Food"}, "geometry": {"type": "Point", "coordinates": [-73.9981, 40.7328]}},
+    {"type": "Feature", "properties": {"times": ["2024-04-20T08:07:00", "2024-04-20T08:17:00"], "type": "Shelter"}, "geometry": {"type": "Point", "coordinates": [-73.9776, 40.7536]}}
+  ]
+}
