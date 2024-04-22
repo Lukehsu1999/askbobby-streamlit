@@ -1,8 +1,8 @@
 import streamlit as st
 import json
 
+st.title("Bobby Impact")
 col1, col2 = st.columns([7,3])
-
 with col1:
     # Define data for multiple rows of cards
     data = [
@@ -145,17 +145,3 @@ with col2:
             else:
                 st.error("Please fill in all the fields. Contact us if you have a special case.")
 
-
-# with open('wave.css') as f:
-#     css = f.read()
-
-# st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
-st.write(f'''
-    <a target="_self" href="https://eox.at">
-        <button>
-            Please login via Google
-        </button>
-    </a>
-    ''',
-    unsafe_allow_html=True
-)
