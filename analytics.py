@@ -75,15 +75,15 @@ with col2:
             # Define a list of services and initial counts
             services = {
                 "Food": 100,
-                "Shelter": 95,
-                "Health": 90,
-                "Clothing": 70
+                "Shelter": 98,
+                "Health": 97,
+                "Clothing": 96
             }
 
             # Function to simulate receiving new requests
             def update_requests(services):
                 """Randomly increase service requests to simulate new data."""
-                return {service: count + random.randint(0, 10) for service, count in services.items()}
+                return {service: count + random.randint(0, 5) for service, count in services.items()}
 
             # Function to generate sorted services by request count
             def generate_sorted_services(services):
@@ -193,5 +193,5 @@ with col2:
 
         
         # Simulate a variable delay to mimic live updates
-        sleep_duration = random.uniform(0.5, 1.5)
+        sleep_duration = random.uniform(3, 5)
         time.sleep(sleep_duration)           

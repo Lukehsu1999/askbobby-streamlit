@@ -50,8 +50,13 @@ with col1:
                 <img src="{card.get('icon_url', 'https://cdn-icons-png.flaticon.com/512/1046/1046784.png')}" style="width: 50px; height: 50px; float: left; margin-right: 10px;">
                 <h2>{card['title']}</h2>
                 <p>{card['description']}</p>
-                <button class='button' onclick="alert('Clicked {card['title']}!');">Donate</button>
+                <a target="_self" href="https://www.coalitionforthehomeless.org/donate/">
+                    <button class='button'>
+                        Donate
+                    </button>
+                </a>
             </div>
+
 
             """
             st.markdown(card_html, unsafe_allow_html=True)
@@ -145,3 +150,12 @@ with col2:
 #     css = f.read()
 
 # st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
+st.write(f'''
+    <a target="_self" href="https://eox.at">
+        <button>
+            Please login via Google
+        </button>
+    </a>
+    ''',
+    unsafe_allow_html=True
+)
