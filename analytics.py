@@ -8,7 +8,7 @@ import time
 # checkout reference here: https://python-visualization.github.io/folium/latest/user_guide/plugins/message_timetamped_geojson.html
 
 st.header("Bobby Analytics")
-col1, col2 = st.columns([6,4])
+col1, col2 = st.columns([5,5])
 
 with col1:
     st.subheader("Real-time AskBobby Requests")
@@ -67,47 +67,48 @@ with col1:
     st_data = st_folium(containers_map)
 
 with col2:
+    col3, col4 = st.columns([1,1])
+    with col3:
+        with st.container(border=True):
+            st.subheader("Services Requested:")
 
-    with st.container(border=True):
-        st.subheader("Services Requested:")
+            # Define a list of services and initial counts
+            services = {
+                "Food": 100,
+                "Shelter": 95,
+                "Health": 90,
+                "Clothing": 70
+            }
 
-        # Define a list of services and initial counts
-        services = {
-            "Food": 100,
-            "Shelter": 95,
-            "Health": 90,
-            "Clothing": 70
-        }
+            # Function to simulate receiving new requests
+            def update_requests(services):
+                """Randomly increase service requests to simulate new data."""
+                return {service: count + random.randint(0, 10) for service, count in services.items()}
 
-        # Function to simulate receiving new requests
-        def update_requests(services):
-            """Randomly increase service requests to simulate new data."""
-            return {service: count + random.randint(0, 10) for service, count in services.items()}
+            # Function to generate sorted services by request count
+            def generate_sorted_services(services):
+                return sorted(services.items(), key=lambda item: item[1], reverse=True)
 
-        # Function to generate sorted services by request count
-        def generate_sorted_services(services):
-            return sorted(services.items(), key=lambda item: item[1], reverse=True)
+            # Create a placeholder for displaying the service ranking
+            ranking_container = st.empty()
+    with col4:
+        with st.container(border=True):
+            st.subheader("Languages used")
+            languages = {
+                "English": 100,
+                "Spanish": 103,
+                "Chinese": 30,
+                "Russian": 15
+            }
+            def update_languages(languages, lang):
+                languages[lang] += 1
+                return languages
 
-        # Create a placeholder for displaying the service ranking
-        ranking_container = st.empty()
-
-    with st.container(border=True):
-        st.subheader("Languages used")
-        languages = {
-            "English": 100,
-            "Spanish": 103,
-            "Chinese": 30,
-            "Russian": 15
-        }
-        def update_languages(languages, lang):
-            languages[lang] += 1
-            return languages
-
-        # Function to generate sorted services by request count
-        def generate_sorted_languages(languages):
-            return sorted(languages.items(), key=lambda item: item[1], reverse=True)
-        
-        language_container = st.empty()
+            # Function to generate sorted services by request count
+            def generate_sorted_languages(languages):
+                return sorted(languages.items(), key=lambda item: item[1], reverse=True)
+            
+            language_container = st.empty()
 
     with st.container(border=True):
         st.subheader("Feedback livestream:")
@@ -150,10 +151,10 @@ with col2:
 
         # Generate sorted services and update the display
         service_color = {
-            "Food": "#007bff",
-            "Shelter": "#28a745",
-            "Health": "#dc3545",
-            "Clothing": "#fd7e14"
+            "Food": "#aad3df",
+            "Shelter": "#d7f2c7",
+            "Health": "#e66e89",
+            "Clothing": "#f4c88a"
         }
         sorted_services = generate_sorted_services(services)
         with ranking_container.container():
@@ -171,10 +172,10 @@ with col2:
 
         # Update language counts
         language_color = {
-            "English": "#007bff",  # Blue
-            "Spanish": "#28a745",  # Green
-            "Chinese": "#dc3545",  # Red
-            "Russian": "#fd7e14"  # Orange
+            "English": "#aad3df",  # Blue
+            "Spanish": "#d7f2c7",  # Green
+            "Chinese": "#e66e89",  # Red
+            "Russian": "#f4c88a"  # Orange
         }
 
         language_container.empty()  # Placeholder for dynamic content
